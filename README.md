@@ -18,7 +18,7 @@ composer require isidea/health-notifier
 **После установки пакета, опубликуйте конфигурацию с помощью команды:**
 
 ```bash
-php artisan vendor:publish --provider="Isidea\HealthNotifier\HealthNotifierServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Isidea\HealthNotifier\Providers\HealthNotifierServiceProvider" --tag="config"
 ```
 
 Перейдите в файл конфигурации `config/health-notifier.php` и настройте необходимые параметры.
@@ -47,7 +47,7 @@ protected function schedule(Schedule $schedule)
 ### Cron напрямую
 
 ```cron
-0 0 * * * /path-to-php/php /path-to-your-project/artisan health-notifier:notify --cron >> /dev/null 2>&1
+0 0 * * * /path-to-php/php /path-to-your-project/artisan health-notifier:notify --no-interaction >> /dev/null 2>&1
 ```
 
 ## Настройки Email уведомлений
@@ -73,6 +73,11 @@ protected function schedule(Schedule $schedule)
         // mailer из конфига laravel
         'mailer' => env('HEALTH_NOTIFIER_EMAIL_MAILER', 'smtp'),
     ],
+```
+
+Можно изменить/дополнить/расширить шаблон письма, который используется по-умолчанию:
+```bash
+php artisan vendor:publish --provider="Isidea\HealthNotifier\Providers\HealthNotifierServiceProvider" --tag="views"
 ```
 
 ## Настройки Telegram уведомлений

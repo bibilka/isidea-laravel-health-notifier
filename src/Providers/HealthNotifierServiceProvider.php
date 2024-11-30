@@ -21,13 +21,13 @@ class HealthNotifierServiceProvider extends ServiceProvider
         // config
         $this->publishes([
             __DIR__ . '/../../config/health_notifier.php' => config_path('health_notifier.php'),
-        ]);
+        ], 'config');
 
         // views
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health_notifier');
         $this->publishes([
             __DIR__.'/../../resources/views' => resource_path('views/vendor/health_notifier'),
-        ]);
+        ], 'views');
 
         // Регистрируем команду
         $this->commands([
@@ -43,7 +43,7 @@ class HealthNotifierServiceProvider extends ServiceProvider
         // contracts and adapters
 
         $this->app->singleton(Logger::class, function ($app) {
-            return new ModuleLoggingChannelLogger();
+            return $app->make(ModuleLoggingChannelLogger::class);
         });
 
         $this->app->singleton(EmailNotificationSettingsRepository::class, function ($app) {
@@ -57,9 +57,6 @@ class HealthNotifierServiceProvider extends ServiceProvider
         // config merge
         $this->mergeConfigFrom(
             __DIR__.'/../../config/health_notifier.php', 'health_notifier'
-        );
-        $this->mergeConfigFrom(
-            __DIR__ . '/../../config/logging.php', 'logging'
         );
     }
 }
