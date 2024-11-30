@@ -50,6 +50,8 @@ class EmailNotifier implements Notifier
                 Mail::mailer($this->settings->getMailer())->to($email)->send($this->notification);
     
                 $successMails += 1;
+
+                $this->logger->info('Отправка уведомления на email ' . $email . ' прошла успешно');
     
             } catch (\Exception $ex) {
     

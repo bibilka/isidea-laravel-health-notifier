@@ -18,16 +18,18 @@ class HealthNotifierServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // config
+        // Публикация конфигурации
         $this->publishes([
             __DIR__ . '/../../config/health_notifier.php' => config_path('health_notifier.php'),
         ], 'config');
 
-        // views
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health_notifier');
+        // Публикация шаблонов (если они не были опубликованы)
         $this->publishes([
             __DIR__.'/../../resources/views' => resource_path('views/vendor/health_notifier'),
         ], 'views');
+
+        // Загрузка представлений с правильным префиксом
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health-notifier');
 
         // Регистрируем команду
         $this->commands([

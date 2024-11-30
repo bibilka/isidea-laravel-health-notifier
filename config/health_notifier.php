@@ -15,7 +15,7 @@ return [
     'email' => [
 
         // Включить или выключить email уведомления
-        'enabled' => (bool) env('HEALTH_NOTIFIER_EMAIL_ENABLED', true),
+        'enabled' => (bool) env('HEALTH_NOTIFIER_EMAIL_ENABLED', false),
 
         // адрес отправителя
         'from' => env('HEALTH_NOTIFIER_EMAIL_FROM', 'admin@example.ru'),
