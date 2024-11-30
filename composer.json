@@ -2,7 +2,6 @@
     "name": "isidea/health-notifier",
     "description": "A Laravel package for sending health status notifications to various channels like Telegram and email.",
     "minimum-stability": "stable",
-    "version": "0.0.4",
     "license": "MIT",
     "require": {
         "php": "^8.1",

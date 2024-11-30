@@ -5,7 +5,9 @@ namespace Isidea\HealthNotifier\Providers;
 use Illuminate\Support\ServiceProvider;
 use Isidea\HealthNotifier\Contracts\Email\EmailNotificationSettingsRepository;
 use Isidea\HealthNotifier\Contracts\Logging\Logger;
+use Isidea\HealthNotifier\Contracts\NotifierFactory;
 use Isidea\HealthNotifier\Infrastructure\Console\Commands\SendAppHealthNotification;
+use Isidea\HealthNotifier\Infrastructure\Factory\EnabledNotifiersFactory;
 use Isidea\HealthNotifier\Modules\Email\Adapter\EmailNotificationConfigSettingsRepository;
 use Isidea\HealthNotifier\Modules\Logging\Adapter\ModuleLoggingChannelLogger;
 
@@ -46,6 +48,10 @@ class HealthNotifierServiceProvider extends ServiceProvider
 
         $this->app->singleton(EmailNotificationSettingsRepository::class, function ($app) {
             return new EmailNotificationConfigSettingsRepository();
+        });
+
+        $this->app->singleton(NotifierFactory::class, function ($app) {
+            return $app->make(EnabledNotifiersFactory::class);
         });
 
         // config merge
