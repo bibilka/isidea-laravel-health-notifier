@@ -10,7 +10,7 @@ class NotifierCollection
     /**
      * @var Notifier[]|array
      */
-    public readonly array $notifiers;
+    public array $notifiers = [];
 
     /**
      * @param array $notifiers
@@ -32,5 +32,13 @@ class NotifierCollection
     {
         $this->notifiers[] = $notifier;
         return $this;
+    }
+
+    /**
+     * @return Notifier[]|array
+     */
+    public function getNotifiers() : array
+    {
+        return $this->notifiers;
     }
 }

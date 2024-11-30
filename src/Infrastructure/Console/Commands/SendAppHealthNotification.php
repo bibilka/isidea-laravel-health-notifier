@@ -43,7 +43,7 @@ class SendAppHealthNotification extends Command
      */
     public function handle()
     {
-        foreach ($this->factory->get()->notifiers as $notifier) {
+        foreach ($this->factory->get()->getNotifiers() as $notifier) {
             $notifier->notify();
         }
     }

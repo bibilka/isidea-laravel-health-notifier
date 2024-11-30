@@ -25,7 +25,7 @@ class EnabledNotifiersFactory implements NotifierFactory
         $notifiers = new NotifierCollection;
 
         if ($this->emailNotificationSettings->isEmailNotificationsEnabled()) {
-            $notifiers[] = App::make(EmailNotifier::class);
+            $notifiers->add(App::make(EmailNotifier::class));
         }
 
         return $notifiers;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Isidea\HealthNotifier\Provider;
+namespace Isidea\HealthNotifier\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Isidea\HealthNotifier\Contracts\Email\EmailNotificationSettingsRepository;
@@ -18,13 +18,13 @@ class HealthNotifierServiceProvider extends ServiceProvider
     {
         // config
         $this->publishes([
-            __DIR__ . '/../config/health_notifier.php' => config_path('health_notifier.php'),
+            __DIR__ . '/../../config/health_notifier.php' => config_path('health_notifier.php'),
         ]);
 
         // views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'health_notifier');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health_notifier');
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/health_notifier'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/health_notifier'),
         ]);
 
         // Регистрируем команду
@@ -50,10 +50,10 @@ class HealthNotifierServiceProvider extends ServiceProvider
 
         // config merge
         $this->mergeConfigFrom(
-            __DIR__.'/../config/health_notifier.php', 'health_notifier'
+            __DIR__.'/../../config/health_notifier.php', 'health_notifier'
         );
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/logging.php', 'logging'
+            __DIR__ . '/../../config/logging.php', 'logging'
         );
     }
 }
