@@ -82,6 +82,22 @@ php artisan vendor:publish --provider="Isidea\HealthNotifier\Providers\HealthNot
 
 ## Настройки Telegram уведомлений
 
+### Создайте телеграм бота
+
+Воспользуйтесь стандартным функционалом телеграм чтобы зарегистрировать бота через `@BotFather`. Полученный токен укажите в конфиге в `telegram.bot_token`.
+
+### Получение ChatID
+
+Установите текущее приложение в качестве обработчика вебхуков от созданного телеграм бота:
+
+```bash
+php artisan health-notifier:telegram-bot-set-weebhook
+```
+
+Начните диалог с ботом или пригласите его в требуемый чат. Воспользуйтесь командой `/start` - бот вернет ID чата. Установите полученный ID в конфиге `telegram.chat_id`.
+
+### Дополнительная конфигурация
+
 ```php
     'telegram' => [
 
@@ -92,7 +108,15 @@ php artisan vendor:publish --provider="Isidea\HealthNotifier\Providers\HealthNot
         'chat_id' => env('HEALTH_NOTIFIER_TELEGRAM_CHAT_ID', 'your-telegram-chat-id'),
 
         // Токен Telegram-бота
-        'bot_token' => env('HEALTH_NOTIFIER_TELEGRAM_BOT_TOKEN', 'your-bot-token')
+        'bot_token' => env('HEALTH_NOTIFIER_TELEGRAM_BOT_TOKEN', 'your-bot-token'),
+
+        // Путь к blade шаблону для сообщения
+        'template' => env('HEALTH_NOTIFIER_TELEGRAM_TEMPLATE', 'health_notifier::telegram.notification'),
     ]
+```
+
+Можно изменить/дополнить/расширить шаблон сообщения, который используется по-умолчанию:
+```bash
+php artisan vendor:publish --provider="Isidea\HealthNotifier\Providers\HealthNotifierServiceProvider" --tag="views"
 ```
 

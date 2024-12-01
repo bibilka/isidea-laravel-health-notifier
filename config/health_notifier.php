@@ -51,6 +51,9 @@ return [
         'chat_id' => env('HEALTH_NOTIFIER_TELEGRAM_CHAT_ID', 'your-telegram-chat-id'),
 
         // Токен Telegram-бота
-        'bot_token' => env('HEALTH_NOTIFIER_TELEGRAM_BOT_TOKEN', 'your-bot-token')
+        'bot_token' => env('HEALTH_NOTIFIER_TELEGRAM_BOT_TOKEN', 'your-bot-token'),
+
+        // Путь к blade шаблону для сообщения
+        'template' => env('HEALTH_NOTIFIER_TELEGRAM_TEMPLATE', 'health_notifier::telegram.notification'),
     ]
 ];
