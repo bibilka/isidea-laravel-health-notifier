@@ -29,7 +29,7 @@ class HealthNotifierServiceProvider extends ServiceProvider
         ], 'views');
 
         // Загрузка представлений с правильным префиксом
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health-notifier');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'health_notifier');
 
         // Регистрируем команду
         $this->commands([

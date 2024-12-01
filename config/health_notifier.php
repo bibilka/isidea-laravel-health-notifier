@@ -27,7 +27,7 @@ return [
         'recipients' => env('HEALTH_NOTIFIER_EMAIL_RECIPIENTS', ['admin@example.ru']),
 
         // Путь к blade-markdown шаблону для email
-        'markdown' => env('HEALTH_NOTIFIER_EMAIL_TEMPLATE', 'health-notifier::mail.notification'),
+        'markdown' => env('HEALTH_NOTIFIER_EMAIL_TEMPLATE', 'health_notifier::mail.notification'),
 
         // mailer из конфига laravel
         'mailer' => env('HEALTH_NOTIFIER_EMAIL_MAILER', 'smtp'),
